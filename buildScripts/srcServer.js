@@ -18,14 +18,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
-
-app.get('/users', function (req, res) {
-  res.json([
-    {"id": 1, "firstName":"Hannah","lastName":"Smith","email":"hannah@gmail.com"},
-    {"id": 2, "firstName":"Kelly","lastName":"Burkhard","email":"kelly@gmail.com"},
-    {"id": 3, "firstName":"Diana","lastName":"Reynard","email":"diana.reynard.burkhard@gmail.com"}
-  ])
-})
+app.get('/tic-tac-toe', function(req, res){
+  res.sendFile(path.join(__dirname, '../src/tic-tac-toe/tic-tac-toe.html'));
+});
 
 app.listen(port, function(err) {
   if (err) {
