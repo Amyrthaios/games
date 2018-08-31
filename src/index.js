@@ -33,55 +33,84 @@ import './index.css';
     },
     game: function(){
       var t = 0;
+      var activePlayer;
+
       //adding click event listeners to the buttons
       var buttonArray = document.querySelectorAll('button');
 
       for (var i = 0; i < buttonArray.length; i++) {
         buttonArray[i].addEventListener("click",function(){
-          turn(this, t);
-          t=turncounter(t);
+          if(t%2 === 0 ) {
+            activePlayer = 'X';
+          } else {
+            activePlayer = 'O';
+          }
+          turn(this, t, activePlayer);
+          t=counter(t);
+          gameOver(buttonArray, activePlayer);
         });
       }
     }
+
   }
 })();
 
 var tttBoard = new tttView(document.getElementById('board'), 3);
 
 //everybody gets a fair turn
-function turn(param, t){
-  var self = param;
+function turn(param, t, activePlayer){
+  var tile = param;
   var turnCount = t;
 
     if(turnCount%2 === 0 ) {
-      self.innerHTML = 'X';
+      tile.innerHTML = activePlayer;
     } else {
-      self.innerHTML= '0';
+      tile.innerHTML = activePlayer;
     }
-    self.setAttribute('disabled', '');
+    tile.setAttribute('disabled', '');
 }
 
+  function gameOver(buttonArray, activePlayer) {
+    var square = Array.from(buttonArray);
+    var winner = activePlayer;
+
+    switch (true) {
+      case (square[0].innerHTML === activePlayer && square[1].innerHTML === activePlayer && square[2].innerHTML):
+        alert(winner + " Wins!");
+        break;
+      case (square[3].innerHTML === activePlayer && square[4].innerHTML === activePlayer && square[5].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[6].innerHTML === activePlayer && square[7].innerHTML === activePlayer && square[8].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[0].innerHTML === activePlayer && square[3].innerHTML === activePlayer && square[5].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[1].innerHTML === activePlayer && square[4].innerHTML === activePlayer && square[6].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[2].innerHTML === activePlayer && square[5].innerHTML === activePlayer && square[8].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[0].innerHTML === activePlayer && square[4].innerHTML === activePlayer && square[8].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      case (square[2].innerHTML === activePlayer && square[4].innerHTML === activePlayer && square[6].innerHTML === activePlayer):
+        alert(winner + " Wins!");
+        break;
+      default: return;
+    }
+  }
 //just to make sure
-function turncounter(n) {
+function counter(n) {
  n++;
  return n;
-}
-
-function gamecounter(gn) {
-  gn++;
-  return gn;
 }
 
 var a = document.getElementById("nextGame");
 var gc = 0;
 a.onclick = function(){
-  var buttonArray = document.querySelectorAll('button');
-  for (var i = 0; i < buttonArray.length; i++) {
-    buttonArray[i].innerHTML = "";
-    buttonArray[i].removeAttribute('disabled');
-  }
- gc = gamecounter(gc);
-this.game();
-
- console.log(gc);
+ new tttView(document.getElementById('board'), 3);
+ gc = counter(gc);
 };

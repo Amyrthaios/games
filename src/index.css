@@ -23,11 +23,11 @@ button {
   appearance: none;
 
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border: 0;
   box-shadow: none;
-  font-size: 3rem;
+  font-size: 5rem;
   background-color: white;
 }
 

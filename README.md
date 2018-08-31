@@ -4,6 +4,7 @@ Vanilla Javascript project to practice with an array of functionality. (get it?)
 
 to fix: 
 - turncounter in subsequent games
+- Refactoring code
 
 to add: 
 - colors per player
